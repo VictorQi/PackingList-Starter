@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="PackingList" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nnI-N4-ffI">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Packing List" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qau-P8-mCd">
+                                        <rect key="frame" x="244" y="22" width="113" height="26"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TAc-5b-e3z">
+                                        <rect key="frame" x="562" y="13" width="30" height="45"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                        <state key="normal" title="+"/>
+                                        <connections>
+                                            <action selector="actionToggleMenu:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="EKy-nJ-bTd"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="Qau-P8-mCd" firstAttribute="centerY" secondItem="nnI-N4-ffI" secondAttribute="centerY" constant="5" id="477-o5-7rg"/>
+                                    <constraint firstAttribute="trailing" secondItem="TAc-5b-e3z" secondAttribute="trailing" constant="8" id="8eC-qH-ZOZ"/>
+                                    <constraint firstAttribute="height" constant="60" id="EQj-kR-OuB"/>
+                                    <constraint firstItem="Qau-P8-mCd" firstAttribute="centerX" secondItem="nnI-N4-ffI" secondAttribute="centerX" id="Hle-5A-tUC"/>
+                                    <constraint firstItem="TAc-5b-e3z" firstAttribute="centerY" secondItem="Qau-P8-mCd" secondAttribute="centerY" id="eOg-SY-uei"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oph-JD-Dgl">
+                                <rect key="frame" x="0.0" y="60" width="600" height="540"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="kJA-in-FHS">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kJA-in-FHS" id="HaI-xT-3dE">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="OQw-MQ-xAC"/>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="GKY-We-voT"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="oph-JD-Dgl" secondAttribute="bottom" id="C4k-36-2Db"/>
+                            <constraint firstItem="oph-JD-Dgl" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="C9b-p4-Fth"/>
+                            <constraint firstItem="oph-JD-Dgl" firstAttribute="top" secondItem="nnI-N4-ffI" secondAttribute="bottom" id="WwC-Tt-k2d"/>
+                            <constraint firstAttribute="trailing" secondItem="nnI-N4-ffI" secondAttribute="trailing" id="hcW-xL-KkM"/>
+                            <constraint firstItem="nnI-N4-ffI" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="hq7-I7-YAu"/>
+                            <constraint firstAttribute="trailing" secondItem="oph-JD-Dgl" secondAttribute="trailing" id="wu9-kU-KwI"/>
+                            <constraint firstItem="nnI-N4-ffI" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="zjd-qn-ct5"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="buttonMenu" destination="TAc-5b-e3z" id="6MB-s3-crt"/>
+                        <outlet property="menuHeightConstraint" destination="EQj-kR-OuB" id="660-6T-NTX"/>
+                        <outlet property="tableView" destination="oph-JD-Dgl" id="523-a6-RCw"/>
+                        <outlet property="titleLabel" destination="Qau-P8-mCd" id="a6z-0c-9XR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="563" y="479"/>
+        </scene>
+    </scenes>
+</document>
