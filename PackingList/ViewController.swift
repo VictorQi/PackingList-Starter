@@ -41,29 +41,97 @@ class ViewController: UIViewController {
     
     @IBAction func actionToggleMenu(sender: AnyObject) {
         isMenuOpen = !isMenuOpen
+        
+        for constraint in self.titleLabel.superview!.constraints {
+            if constraint.firstItem as? NSObject == self.titleLabel &&
+                constraint.firstAttribute == .CenterX {
+                constraint.constant = self.isMenuOpen ? -100.0 : 0.0
+                continue
+            }
+            
+            if constraint.identifier == "TitleCenterY" {
+                constraint.active = false
+                
+                let newConstraint = NSLayoutConstraint(item: titleLabel,
+                                                       attribute: .CenterY,
+                                                       relatedBy: .Equal,
+                                                       toItem: titleLabel.superview!,
+                                                       attribute: .CenterY,
+                                                       multiplier: (isMenuOpen ? 0.67 : 1.0),
+                                                       constant: 5.0)
+                newConstraint.identifier = "TitleCenterY"
+                newConstraint.active = true
+                
+                continue
+            }
+        }
+        
         menuHeightConstraint.constant = isMenuOpen ? 200.0 : 60.0
         self.titleLabel.text = self.isMenuOpen ? "Select Item" : "Packing List"
         
         UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 10.0, options: [.CurveEaseIn], animations: {
+            
+            let angle = self.isMenuOpen ? CGFloat(M_PI_4) : 0.0
+            self.buttonMenu.transform = CGAffineTransformMakeRotation(angle)
+            
             self.view.layoutIfNeeded()
             }, completion: nil)
-    }
-    
-    func showItem(index: Int) {
-        print("tapped item \(index)")
+        
+        if isMenuOpen {
+            slider = HorizontalItemList(inView: self.view)
+            slider.didSelectItem = { index in
+                //                print("add \(index)")
+                self.items.append(index)
+                self.tableView.reloadData()
+                self.actionToggleMenu(self)
+            }
+            self.titleLabel.superview!.addSubview(slider)
+        } else {
+            slider.removeFromSuperview()
+        }
         
     }
     
-//    func cubeLabel(label label: UILabel, toText: String, open: Bool) {
-//        let auxLabel = UILabel(frame: label.frame)
-//        auxLabel.font = label.font
-//        auxLabel.textAlignment = label.textAlignment
-//        auxLabel.textColor = label.textColor
-//        auxLabel.backgroundColor = label.backgroundColor
-//        auxLabel.text = toText
-//        
-//        
-//    }
+    func showItem(index: Int) {
+        let imageView = UIImageView(image: UIImage(named: "summericons_100px_0\(index).png"))
+        
+        imageView.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
+        imageView.layer.cornerRadius = 5.0
+        imageView.layer.masksToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(imageView)
+        
+        
+        if #available(iOS 9.0, *) {
+            let conX = imageView.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor)
+            let conBottom = imageView.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor, constant: CGRectGetHeight(imageView.frame))
+            let conWidth = imageView.widthAnchor.constraintEqualToAnchor(view.widthAnchor,
+                                                                         multiplier: 0.33,
+                                                                         constant: -50.0)
+            let conHeight = imageView.heightAnchor.constraintEqualToAnchor(imageView.widthAnchor)
+            
+            NSLayoutConstraint.activateConstraints([conX, conBottom, conWidth, conHeight])
+            
+            view.layoutIfNeeded()
+            
+            UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.0, options: [], animations: {
+                conBottom.constant = -CGRectGetHeight(imageView.frame)
+                conWidth.constant = 0.0
+                self.view.layoutIfNeeded()
+                }, completion: { _ in
+                   imageView.removeFromSuperview()
+            })
+            
+            
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        
+        
+    }
+    
+    
 }
 
 
