@@ -1,0 +1,6 @@
+framework module Pods_PackingList {
+  umbrella header "Pods-PackingList-umbrella.h"
+
+  export *
+  module * { export * }
+}
