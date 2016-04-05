@@ -1,10 +1,10 @@
 PODS:
-  - PureLayout (3.0.1)
+  - SnapKit (0.15.0)
 
 DEPENDENCIES:
-  - PureLayout
+  - SnapKit (~> 0.15.0)
 
 SPEC CHECKSUMS:
-  PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
+  SnapKit: 4962eed2ee18e48cbd2b2292fffc57efe7235f87
 
 COCOAPODS: 0.38.2
