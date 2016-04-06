@@ -102,10 +102,11 @@ class ViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(imageView)
         
-        
         if #available(iOS 9.0, *) {
             let conX = imageView.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor)
+            
             let conBottom = imageView.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor, constant: CGRectGetHeight(imageView.frame))
+            
             let conWidth = imageView.widthAnchor.constraintEqualToAnchor(view.widthAnchor,
                                                                          multiplier: 0.33,
                                                                          constant: -50.0)
@@ -122,18 +123,30 @@ class ViewController: UIViewController {
                 }, completion: { _ in
                    imageView.removeFromSuperview()
             })
-            
-            
         } else {
-            // Fallback on earlier 
+            // Fallback on earlier iOS 8.0 
             
+            let conX = NSLayoutConstraint(item: imageView, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0)
+
+            let conBottom = NSLayoutConstraint(item: imageView, attribute: .BottomMargin, relatedBy: .Equal, toItem: view, attribute: .BottomMargin, multiplier: 1.0, constant: imageView.frame.size.height)
             
+            let conWidth = NSLayoutConstraint(item: imageView, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.33, constant: -50.0)
+            
+            let conHeight = NSLayoutConstraint(item: imageView, attribute: .Height, relatedBy: .Equal, toItem: imageView, attribute: .Width, multiplier: 1.0, constant: 0.0)
+ 
+            NSLayoutConstraint.activateConstraints([conX, conBottom, conWidth, conHeight])
+            
+            view.layoutIfNeeded()
+            
+            UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.0, options: [], animations: { 
+                conBottom.constant = -imageView.frame.height
+                conWidth.constant = 0.0
+                self.view.layoutIfNeeded()
+                }, completion: { (_) in
+                    imageView.removeFromSuperview()
+            })
         }
-        
-        
-        
     }
-    
     
 }
 

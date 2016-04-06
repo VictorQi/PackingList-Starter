@@ -8,11 +8,20 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 		<key>PureLayout.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>SnapKit.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -22,7 +31,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>4EDA452517A913B556C7860F490D5FD3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>8240A687A12B3496C485DFBEB80E79E2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A01088DE3771C45DF25F65946DFB28E9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
